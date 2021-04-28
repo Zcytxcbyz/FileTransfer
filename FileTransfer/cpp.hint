@@ -1,0 +1,2 @@
+#define FILETRANSFER_API __declspec(dllexport)
+#define FILETRANSFER_API __declspec(dllimport)
