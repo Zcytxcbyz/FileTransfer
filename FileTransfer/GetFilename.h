@@ -14,7 +14,7 @@ char* GetFilename(const char* path) {
     for (int i = strlen(path) - 1; i >= 0; --i) {
         if (path[i] == '/' || path[i] == '\\') {
 			if ((filename = (char*)malloc(length + 1)) == NULL) {
-				break;
+				return 0;
 			}
 			memset(filename, 0, length);
 			strncpy_s(filename, length + 1, path + i + 1, length);
@@ -22,7 +22,11 @@ char* GetFilename(const char* path) {
         }
 		++length;
     }
-	return 0;
+	if ((filename = (char*)malloc(length + 1)) == NULL) {
+		return 0;
+	}
+	memcpy(filename, path, length + 1);
+	return filename;
 }
 
 #endif
